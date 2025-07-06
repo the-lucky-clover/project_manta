@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>PROJECT_MANTA - TR-3B Black Manta</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r159/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stats.js/r17/Stats.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cannon.js/4.2.0/cannon.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.9/dat.gui.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <canvas id="main-canvas"></canvas>
+        
+        <!-- Performance Monitor -->
+        <div id="stats-container"></div>
+        
+        <!-- Mobile Controls -->
+        <div id="mobile-controls" class="mobile-only">
+            <div class="control-stick left-stick" id="movement-stick">
+                <div class="stick-knob"></div>
+            </div>
+            <div class="control-stick right-stick" id="look-stick">
+                <div class="stick-knob"></div>
+            </div>
+            <div class="action-buttons">
+                <button class="action-btn" id="ascend-btn">↑</button>
+                <button class="action-btn" id="descend-btn">↓</button>
+                <button class="action-btn plasma-btn" id="plasma-btn">PLASMA</button>
+            </div>
+        </div>
+        
+        <!-- HUD System -->
+        <div id="hud">
+            <div id="hud-overlay">
+                <div id="mission-info">
+                    <h2 id="mission-title">PROJECT_MANTA</h2>
+                    <p id="mission-status">Initializing...</p>
+                    <div id="plasma-status">
+                        <span>Plasma Power: </span>
+                        <div class="power-bar">
+                            <div class="power-fill" id="plasma-fill"></div>
+                        </div>
+                        <span id="plasma-percentage">0%</span>
+                    </div>
+                </div>
+                
+                <div id="performance-info">
+                    <div>FPS: <span id="fps-counter">60</span></div>
+                    <div>Battery: <span id="battery-level">100%</span></div>
+                    <div>Quality: <span id="quality-level">High</span></div>
+                </div>
+                
+                <div id="controls-info" class="desktop-only">
+                    <div class="control-group">
+                        <span class="key">WASD</span>
+                        <span class="desc">Movement</span>
+                    </div>
+                    <div class="control-group">
+                        <span class="key">Mouse</span>
+                        <span class="desc">Look Around</span>
+                    </div>
+                    <div class="control-group">
+                        <span class="key">Space</span>
+                        <span class="desc">Ascend</span>
+                    </div>
+                    <div class="control-group">
+                        <span class="key">Shift</span>
+                        <span class="desc">Descend</span>
+                    </div>
+                    <div class="control-group">
+                        <span class="key">Q</span>
+                        <span class="desc">Plasma Boost</span>
+                    </div>
+                </div>
+            </div>
+            <div id="crosshair"></div>
+        </div>
+        
+        <!-- Loading Screen -->
+        <div id="loading-screen">
+            <div class="loading-content">
+                <div class="loading-spinner"></div>
+                <p id="loading-text">Loading PROJECT_MANTA...</p>
+                <div class="loading-progress">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

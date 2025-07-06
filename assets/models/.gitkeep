@@ -1,0 +1,18 @@
+# TR-3B Model Directory
+
+This directory will contain the TR-3B.glb model file.
+The model should be a triangular aircraft with the following specifications:
+
+- Triangular shape with rounded edges
+- Metallic dark gray/black surface
+- Plasma engine effects on the underside
+- Landing gear (retractable)
+- Cockpit with minimal external visibility
+- Approximate scale: 30-40 meters wingspan
+
+## Model Requirements
+- Format: GLB (preferred) or GLTF
+- Textures: PBR materials
+- Animations: Landing gear, plasma effects
+- Polycount: 5,000-15,000 triangles
+- File size: <10MB

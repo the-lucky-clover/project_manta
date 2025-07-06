@@ -1,0 +1,17 @@
+{
+  "name": "project-manta",
+  "version": "1.0.0",
+  "description": "PROJECT_MANTA - High-Performance TR-3B Black Manta Simulation",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {},
+  "keywords": ["tr-3b", "webgl", "three.js", "physics", "mobile-first"],
+  "author": "PROJECT_MANTA Team",
+  "license": "MIT"
+}

@@ -1,0 +1,145 @@
+{
+    "campaignTitle": "PROJECT_MANTA",
+    "description": "Classified experimental aircraft testing program",
+    "version": "1.0.0",
+    "act1": {
+        "title": "The Proving Ground",
+        "description": "Initial training and first contact with anomalous entities"
+    },
+    "characters": {
+        "rostova": {
+            "name": "Commandant Eva Rostova",
+            "callsign": "Control-1",
+            "portrait": "assets/portraits/rostova.jpg",
+            "voice": "female-authoritative"
+        },
+        "nexus7": {
+            "name": "Nexus-7",
+            "callsign": "Nexus-7",
+            "description": "Rookie pilot undergoing evaluation"
+        }
+    },
+    "missions": {
+        "atmospheric_calibration": {
+            "id": "atmospheric_calibration",
+            "title": "Atmospheric Calibration",
+            "act": 1,
+            "phase": 1,
+            "description": "Initial systems evaluation and navigation check",
+            "briefing": {
+                "speaker": "rostova",
+                "text": "Nexus-7, welcome to the program. Your first evaluation is a simple systems calibration and navigation check. Fly to the designated orbital coordinates. Keep it clean.",
+                "audio": "briefing_atmospheric_calibration.ogg"
+            },
+            "objectives": [
+                {
+                    "id": "waypoint_1",
+                    "title": "Navigate to Waypoint Alpha",
+                    "description": "Test basic flight controls",
+                    "position": [2000, 500, 1000],
+                    "radius": 100,
+                    "completed": false
+                },
+                {
+                    "id": "waypoint_2", 
+                    "title": "Navigate to Waypoint Beta",
+                    "description": "Test sensor systems",
+                    "position": [-1500, 800, -2000],
+                    "radius": 100,
+                    "completed": false
+                },
+                {
+                    "id": "waypoint_3",
+                    "title": "Navigate to Waypoint Gamma",
+                    "description": "Test cloaking system",
+                    "position": [0, 1200, -3000],
+                    "radius": 100,
+                    "completed": false
+                },
+                {
+                    "id": "investigate_anomaly",
+                    "title": "Investigate the temporal distortion",
+                    "description": "Unknown energy signature detected",
+                    "position": [0, 1500, -4000],
+                    "radius": 200,
+                    "completed": false,
+                    "hidden": true
+                }
+            ],
+            "environment": "orbital_space",
+            "duration": 900,
+            "difficulty": "tutorial",
+            "boss": "the_shard"
+        }
+    },
+    "bosses": {
+        "the_shard": {
+            "id": "the_shard",
+            "name": "The Shard",
+            "type": "crystalline_entity",
+            "description": "A large, crystalline, non-Euclidean entity that warps spacetime",
+            "health": 3,
+            "phases": [
+                {
+                    "name": "Temporal Distortion",
+                    "description": "Creates input lag and HUD glitches",
+                    "duration": 30,
+                    "effects": ["input_lag", "hud_glitch", "temporal_field"]
+                },
+                {
+                    "name": "Quantum Echoes",
+                    "description": "Releases semi-transparent duplicates",
+                    "duration": 45,
+                    "effects": ["quantum_echoes", "temporal_field"]
+                },
+                {
+                    "name": "Chronological Instability",
+                    "description": "Maximum temporal distortion",
+                    "duration": 60,
+                    "effects": ["input_lag", "hud_glitch", "quantum_echoes", "temporal_field"]
+                }
+            ],
+            "vulnerability": {
+                "type": "temporal_analysis",
+                "description": "Use TAE to scan chronological core",
+                "scans_required": 3,
+                "scan_range": 50
+            },
+            "defeat_dialogue": {
+                "speaker": "rostova",
+                "text": "My God... What was that? This changes everything. The training is over.",
+                "audio": "rostova_shard_defeat.ogg"
+            }
+        }
+    },
+    "environments": {
+        "orbital_space": {
+            "name": "Orbital Space",
+            "skybox": "space_nebula",
+            "lighting": "space",
+            "weather": "none",
+            "gravity": 0.1,
+            "atmosphere": "thin"
+        }
+    },
+    "controls": {
+        "movement": {
+            "forward": "KeyW",
+            "backward": "KeyS",
+            "left": "KeyA",
+            "right": "KeyD",
+            "ascend": "Space",
+            "descend": "ShiftLeft"
+        },
+        "camera": {
+            "look": "Mouse",
+            "sensitivity": 0.002
+        },
+        "special": {
+            "stealth": "KeyE",
+            "plasma_boost": "KeyQ",
+            "hud_toggle": "KeyH",
+            "temporal_analysis": "KeyT"
+        }
+    }
+}

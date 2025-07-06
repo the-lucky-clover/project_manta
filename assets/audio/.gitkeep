@@ -1,0 +1,25 @@
+# Audio Directory
+
+This directory will contain sound effects and music for PROJECT_MANTA.
+
+## Required Audio Files
+- Engine sounds (idle, acceleration, deceleration)
+- Plasma effects (charging, discharge, sustained)
+- Environmental sounds (wind, ambient)
+- UI sounds (beeps, alerts, confirmations)
+- Background music (ambient, tense, action)
+
+## Audio Specifications
+- Format: OGG Vorbis (preferred) or MP3
+- Sample rate: 44.1kHz
+- Bit depth: 16-bit
+- Compression: Optimized for web delivery
+- Looping: Marked appropriately for continuous sounds
+
+## File Naming Convention
+- Sound effects: sfx_category_name.ogg
+- Music: music_track_name.ogg
+- Examples:
+  - sfx_engine_idle.ogg
+  - sfx_plasma_charge.ogg
+  - music_ambient_flight.ogg

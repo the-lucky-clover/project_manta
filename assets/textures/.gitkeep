@@ -1,0 +1,16 @@
+# Texture Directory
+
+This directory will contain textures for HUD elements, particles, and environmental effects.
+
+## Required Textures
+- HUD elements (crosshair, targeting reticle, status indicators)
+- Particle effects (plasma, thruster effects, sparks)
+- Environmental textures (skybox, terrain materials)
+- Effect textures (glow maps, normal maps)
+
+## Texture Specifications
+- Format: PNG or JPG
+- Resolution: 512x512 to 2048x2048
+- Compression: Optimized for web delivery
+- Naming convention: descriptive_name_type.ext
+  - Example: plasma_glow_diffuse.png
