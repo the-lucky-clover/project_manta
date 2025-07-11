@@ -39,12 +39,12 @@ export class Engine {
                 throw new Error('Canvas element not found');
             }
             
-            await this.initRenderer();
+            this.initRenderer();
             this.initScene();
             this.initCamera();
             this.initPostProcessing();
             this.initStats();
-            await this.initBatteryAPI();
+            this.initBatteryAPI();
             this.setupEventListeners();
             
             this.isInitialized = true;
@@ -56,7 +56,7 @@ export class Engine {
         }
     }
     
-    async initRenderer() {
+    initRenderer() {
         // Check WebGL2 support
         const gl = this.canvas.getContext('webgl2');
         if (!gl) {
@@ -129,22 +129,28 @@ export class Engine {
         }
     }
     
-    async initBatteryAPI() {
+    initBatteryAPI() {
         try {
             if ('getBattery' in navigator) {
-                this.batteryAPI = await navigator.getBattery();
-                this.batteryLevel = this.batteryAPI.level;
-                
-                this.batteryAPI.addEventListener('levelchange', () => {
-                    this.batteryLevel = this.batteryAPI.level;
+                navigator.getBattery().then((battery) => {
+                    this.batteryAPI = battery;
+                    this.batteryLevel = battery.level;
+                    
+                    battery.addEventListener('levelchange', () => {
+                        this.batteryLevel = battery.level;
+                        this.updateQualitySettings();
+                    });
+                    
+                    battery.addEventListener('chargingchange', () => {
+                        this.updateQualitySettings();
+                    });
+                    
                     this.updateQualitySettings();
+                }).catch((error) => {
+                    console.warn('Battery API not available:', error);
                 });
-                
-                this.batteryAPI.addEventListener('chargingchange', () => {
-                    this.updateQualitySettings();
-                });
-                
-                this.updateQualitySettings();
+            } else {
+                console.warn('Battery API not supported');
             }
         } catch (error) {
             console.warn('Battery API not available:', error);

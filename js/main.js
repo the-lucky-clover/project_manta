@@ -51,7 +51,11 @@ class ProjectManta {
             
             // Initialize core engine
             this.engine = new Engine();
-            await this.engine.init();
+            if (this.engine.isInitialized) {
+                console.log('Engine initialized successfully');
+            } else {
+                throw new Error('Engine failed to initialize');
+            }
             this.updateLoadingProgress(15, 'Engine systems online...');
             
             // Initialize physics world
@@ -64,7 +68,13 @@ class ProjectManta {
             
             // Load TR-3B model
             this.tr3bModel = new TR3BModel(this.engine.scene);
-            await this.tr3bModel.load();
+            try {
+                await this.tr3bModel.load();
+                console.log('TR-3B model loaded successfully');
+            } catch (error) {
+                console.warn('TR-3B model loading failed, using fallback:', error);
+                // Continue with procedural model
+            }
             this.updateLoadingProgress(50, 'TR-3B model loaded...');
             
             // Create physics body for TR-3B
@@ -82,7 +92,13 @@ class ProjectManta {
             this.updateLoadingProgress(80, 'Support systems operational...');
             
             // Initialize campaign system (this will start the first mission)
-            this.campaignSystem = new CampaignSystem(this.engine.scene, this.hudSystem, this.audioSystem);
+            try {
+                this.campaignSystem = new CampaignSystem(this.engine.scene, this.hudSystem, this.audioSystem);
+                console.log('Campaign system initialized');
+            } catch (error) {
+                console.warn('Campaign system initialization failed:', error);
+                // Continue without campaign for now
+            }
             this.updateLoadingProgress(90, 'Campaign systems loaded...');
             
             // Setup camera
@@ -90,7 +106,7 @@ class ProjectManta {
             this.updateLoadingProgress(95, 'Final system checks...');
             
             // Complete initialization
-            await this.finalizeInitialization();
+            this.finalizeInitialization();
             this.updateLoadingProgress(100, 'PROJECT_MANTA ready for deployment...');
             
             // Start the application
@@ -157,13 +173,9 @@ class ProjectManta {
         this.engine.camera.lookAt(tr3bPosition);
     }
     
-    async finalizeInitialization() {
+    finalizeInitialization() {
         // Setup event listeners
         this.setupEventListeners();
-        
-        return new Promise(resolve => {
-            setTimeout(resolve, 500);
-        });
     }
     
     setupEventListeners() {
