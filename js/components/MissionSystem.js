@@ -1,5 +1,8 @@
 // PROJECT_MANTA - Mission System
 
+// Ensure THREE.js is available
+const THREE = window.THREE;
+
 export class MissionSystem {
     constructor(scene, hudSystem, audioSystem) {
         this.scene = scene;

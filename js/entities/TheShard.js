@@ -1,5 +1,8 @@
 // PROJECT_MANTA - The Shard Boss Entity
 
+// Ensure THREE.js is available
+const THREE = window.THREE;
+
 export class TheShard {
     constructor(scene, audioSystem) {
         this.scene = scene;

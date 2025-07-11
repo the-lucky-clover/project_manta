@@ -1,5 +1,8 @@
 // PROJECT_MANTA - Render System
 
+// Ensure THREE.js is available
+const THREE = window.THREE;
+
 export class RenderSystem {
     constructor(canvas) {
         this.canvas = canvas;

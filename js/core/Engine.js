@@ -1,5 +1,8 @@
 // PROJECT_MANTA - Core Engine System
 
+// Ensure THREE.js is available
+const THREE = window.THREE;
+
 export class Engine {
     constructor() {
         this.canvas = null;

@@ -1,5 +1,8 @@
 // PROJECT_MANTA - TR-3B Black Manta Model System
 
+// Ensure THREE.js is available
+const THREE = window.THREE;
+
 export class TR3BModel {
     constructor(scene) {
         this.scene = scene;

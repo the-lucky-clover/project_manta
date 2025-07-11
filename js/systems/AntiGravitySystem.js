@@ -2,6 +2,10 @@
 
 const CANNON = window.CANNON;
 
+// Ensure THREE.js and CANNON.js are available
+const THREE = window.THREE;
+const CANNON = window.CANNON;
+
 export class AntiGravitySystem {
     constructor(physicsBody, tr3bModel) {
         this.physicsBody = physicsBody;

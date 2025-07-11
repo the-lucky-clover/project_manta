@@ -2,6 +2,9 @@
 
 import { TheShard } from '../entities/TheShard.js';
 
+// Ensure THREE.js is available
+const THREE = window.THREE;
+
 export class BossSystem {
     constructor(scene, audioSystem, hudSystem) {
         this.scene = scene;
