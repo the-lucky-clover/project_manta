@@ -29,29 +29,22 @@ export class TR3BModel {
     
     async load() {
         try {
-            console.log('TR3BModel load starting...');
             // For now, create a procedural TR-3B model
             // In production, this would load the actual .glb file
-            await this.createProceduralModel();
-            console.log('Procedural model created');
+            this.createProceduralModel();
             this.setupLODSystem();
-            console.log('LOD system setup');
             this.createPlasmaRings();
-            console.log('Plasma rings created');
             this.setupAnimations();
-            console.log('Animations setup');
             
             this.isLoaded = true;
-            console.log('TR-3B model loaded successfully');
             
         } catch (error) {
             console.error('Failed to load TR-3B model:', error);
-            console.error('TR3B Error details:', error.message);
             throw error;
         }
     }
     
-    async createProceduralModel() {
+    createProceduralModel() {
         // Create main hull geometry (triangular)
         const hullGeometry = this.createHullGeometry();
         const hullMaterial = this.createHullMaterial();
