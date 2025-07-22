@@ -47,75 +47,86 @@ class ProjectManta {
     
     async init() {
         try {
+            console.log('Starting PROJECT_MANTA initialization...');
             this.updateLoadingProgress(5, 'Initializing core engine...');
             
             // Initialize core engine
             this.engine = new Engine();
-            if (this.engine.isInitialized) {
-                console.log('Engine initialized successfully');
-            } else {
-                throw new Error('Engine failed to initialize');
-            }
+            console.log('Engine created, checking initialization...');
+            
+            // Wait a moment for engine to initialize
+            await new Promise(resolve => setTimeout(resolve, 100));
+            
+            console.log('Engine initialization status:', this.engine.isInitialized);
             this.updateLoadingProgress(15, 'Engine systems online...');
             
             // Initialize physics world
+            console.log('Initializing physics world...');
             this.initPhysicsWorld();
             this.updateLoadingProgress(25, 'Physics world created...');
             
             // Initialize control system
+            console.log('Initializing control system...');
             this.controlSystem = new ControlSystem(this.engine.canvas);
             this.updateLoadingProgress(35, 'Control systems calibrated...');
             
             // Load TR-3B model
+            console.log('Loading TR-3B model...');
             this.tr3bModel = new TR3BModel(this.engine.scene);
             try {
                 await this.tr3bModel.load();
                 console.log('TR-3B model loaded successfully');
             } catch (error) {
                 console.warn('TR-3B model loading failed, using fallback:', error);
-                // Continue with procedural model
             }
             this.updateLoadingProgress(50, 'TR-3B model loaded...');
             
             // Create physics body for TR-3B
+            console.log('Creating TR-3B physics body...');
             this.createTR3BPhysicsBody();
             this.updateLoadingProgress(60, 'Physics integration complete...');
             
             // Initialize anti-gravity system
+            console.log('Initializing anti-gravity system...');
             this.antiGravitySystem = new AntiGravitySystem(this.tr3bBody, this.tr3bModel);
             this.updateLoadingProgress(70, 'Anti-gravity systems online...');
             
             // Initialize remaining systems
+            console.log('Initializing remaining systems...');
             this.physicsSystem = new PhysicsSystem();
             this.audioSystem = new AudioSystem();
             this.hudSystem = new HUDSystem();
             this.updateLoadingProgress(80, 'Support systems operational...');
             
             // Initialize campaign system (this will start the first mission)
+            console.log('Initializing campaign system...');
             try {
                 this.campaignSystem = new CampaignSystem(this.engine.scene, this.hudSystem, this.audioSystem);
                 console.log('Campaign system initialized');
             } catch (error) {
                 console.warn('Campaign system initialization failed:', error);
-                // Continue without campaign for now
             }
             this.updateLoadingProgress(90, 'Campaign systems loaded...');
             
             // Setup camera
+            console.log('Setting up camera...');
             this.setupCamera();
             this.updateLoadingProgress(95, 'Final system checks...');
             
             // Complete initialization
+            console.log('Finalizing initialization...');
             this.finalizeInitialization();
             this.updateLoadingProgress(100, 'PROJECT_MANTA ready for deployment...');
             
             // Start the application
+            console.log('Starting application...');
             setTimeout(() => {
                 this.startApplication();
             }, 1000);
             
         } catch (error) {
             console.error('Failed to initialize PROJECT_MANTA:', error);
+            console.error('Error stack:', error.stack);
             this.showError('System initialization failed. Check console for details.');
         }
     }

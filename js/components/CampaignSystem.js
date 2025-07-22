@@ -21,22 +21,28 @@ export class CampaignSystem {
     
     async init() {
         try {
+            console.log('CampaignSystem init starting...');
             await this.loadCampaignData();
+            console.log('Campaign data loaded');
             
             // Import and initialize mission system
             const { MissionSystem } = await import('./MissionSystem.js');
             this.missionSystem = new MissionSystem(this.scene, this.hudSystem, this.audioSystem);
+            console.log('Mission system created');
             
             // Import and initialize boss system
             const { BossSystem } = await import('../systems/BossSystem.js');
             this.bossSystem = new BossSystem(this.scene, this.audioSystem, this.hudSystem);
+            console.log('Boss system created');
             
             // Start first mission
+            console.log('Starting first mission...');
             this.startMission('atmospheric_calibration');
             
             console.log('Enhanced Campaign System initialized');
         } catch (error) {
             console.error('Failed to initialize Campaign System:', error);
+            console.error('Campaign error details:', error.message);
         }
     }
     

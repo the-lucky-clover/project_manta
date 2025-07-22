@@ -29,29 +29,44 @@ export class Engine {
         this.qualityLevel = 'high'; // high, medium, low
         this.pixelRatio = Math.min(window.devicePixelRatio, 2);
         
-        this.init();
+        // Initialize synchronously
+        try {
+            this.init();
+        } catch (error) {
+            console.error('Engine initialization failed:', error);
+        }
     }
     
-    async init() {
+    init() {
         try {
+            console.log('Engine init starting...');
             this.canvas = document.getElementById('main-canvas');
             if (!this.canvas) {
                 throw new Error('Canvas element not found');
             }
+            console.log('Canvas found');
             
             this.initRenderer();
+            console.log('Renderer initialized');
             this.initScene();
+            console.log('Scene initialized');
             this.initCamera();
+            console.log('Camera initialized');
             this.initPostProcessing();
+            console.log('Post-processing initialized');
             this.initStats();
+            console.log('Stats initialized');
             this.initBatteryAPI();
+            console.log('Battery API initialized');
             this.setupEventListeners();
+            console.log('Event listeners setup');
             
             this.isInitialized = true;
             console.log('Engine initialized successfully');
             
         } catch (error) {
             console.error('Engine initialization failed:', error);
+            console.error('Error details:', error.message);
             throw error;
         }
     }
